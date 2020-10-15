@@ -4,7 +4,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/brancz/kubernetes-grafana.git",
+          "remote": "https://github.com/brancz/kubernetes-grafana",
           "subdir": "grafana"
         }
       },
@@ -24,7 +24,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/grafana/grafonnet-lib.git",
+          "remote": "https://github.com/grafana/grafonnet-lib",
           "subdir": "grafonnet"
         }
       },
@@ -34,7 +34,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/grafana/jsonnet-libs.git",
+          "remote": "https://github.com/grafana/jsonnet-libs",
           "subdir": "grafana-builder"
         }
       },
@@ -44,7 +44,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/ksonnet/ksonnet-lib.git",
+          "remote": "https://github.com/ksonnet/ksonnet-lib",
           "subdir": ""
         }
       },
@@ -55,7 +55,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/kubernetes-monitoring/kubernetes-mixin.git",
+          "remote": "https://github.com/kubernetes-monitoring/kubernetes-mixin",
           "subdir": ""
         }
       },
@@ -65,7 +65,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/kubernetes-monitoring/kubernetes-mixin.git",
+          "remote": "https://github.com/kubernetes-monitoring/kubernetes-mixin",
           "subdir": "lib/promgrafonnet"
         }
       },
@@ -75,7 +75,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/kubernetes/kube-state-metrics.git",
+          "remote": "https://github.com/kubernetes/kube-state-metrics",
           "subdir": "jsonnet/kube-state-metrics"
         }
       },
@@ -85,7 +85,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/kubernetes/kube-state-metrics.git",
+          "remote": "https://github.com/kubernetes/kube-state-metrics",
           "subdir": "jsonnet/kube-state-metrics-mixin"
         }
       },
@@ -95,7 +95,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/prometheus-operator/prometheus-operator.git",
+          "remote": "https://github.com/prometheus-operator/prometheus-operator",
           "subdir": "jsonnet/mixin"
         }
       },
@@ -105,7 +105,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/prometheus-operator/prometheus-operator.git",
+          "remote": "https://github.com/prometheus-operator/prometheus-operator",
           "subdir": "jsonnet/prometheus-operator"
         }
       },
@@ -126,7 +126,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/prometheus/node_exporter.git",
+          "remote": "https://github.com/prometheus/node_exporter",
           "subdir": "docs/node-mixin"
         }
       },
@@ -136,7 +136,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/prometheus/prometheus.git",
+          "remote": "https://github.com/prometheus/prometheus",
           "subdir": "documentation/prometheus-mixin"
         }
       },
