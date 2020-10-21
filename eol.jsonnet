@@ -46,6 +46,9 @@ local kp =
         }],
       },
     },
+    grafanaDashboards+:: {
+      'general.json': (import 'eol/general.json'),
+    },
   };
 
 { ['setup/0namespace-' + name]: kp.kubePrometheus[name] for name in std.objectFields(kp.kubePrometheus) } +

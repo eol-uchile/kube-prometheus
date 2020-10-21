@@ -62,6 +62,9 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/controller-manager
           name: grafana-dashboard-controller-manager
           readOnly: false
+        - mountPath: /grafana-dashboard-definitions/0/general
+          name: grafana-dashboard-general
+          readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/k8s-resources-cluster
           name: grafana-dashboard-k8s-resources-cluster
           readOnly: false
@@ -150,6 +153,9 @@ spec:
       - configMap:
           name: grafana-dashboard-controller-manager
         name: grafana-dashboard-controller-manager
+      - configMap:
+          name: grafana-dashboard-general
+        name: grafana-dashboard-general
       - configMap:
           name: grafana-dashboard-k8s-resources-cluster
         name: grafana-dashboard-k8s-resources-cluster
