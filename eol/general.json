@@ -15,7 +15,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 25,
   "links": [],
   "panels": [
     {
@@ -62,8 +61,7 @@
       "pluginVersion": "7.1.0",
       "targets": [
         {
-          "expr": "1 - avg(rate(node_cpu_seconds_total{mode=\"idle\", 
-cluster=\"\"}[$__interval]))",
+          "expr": "1 - avg(rate(node_cpu_seconds_total{mode=\"idle\", \ncluster=\"\"}[$__interval]))",
           "interval": "30s",
           "legendFormat": "",
           "refId": "A"
@@ -118,8 +116,7 @@ cluster=\"\"}[$__interval]))",
       "pluginVersion": "7.1.0",
       "targets": [
         {
-          "expr": "1 - sum(:node_memory_MemAvailable_bytes:sum) / 
-sum(kube_node_status_allocatable_memory_bytes)",
+          "expr": "1 - sum(:node_memory_MemAvailable_bytes:sum) / \nsum(kube_node_status_allocatable_memory_bytes)",
           "interval": "30s",
           "legendFormat": "",
           "refId": "A"
@@ -174,8 +171,7 @@ sum(kube_node_status_allocatable_memory_bytes)",
       "pluginVersion": "7.1.0",
       "targets": [
         {
-          "expr": "sum(kube_pod_container_resource_requests_cpu_cores{cluster=\"\"}) / 
-sum(kube_node_status_allocatable_cpu_cores{cluster=\"\"})",
+          "expr": "sum(kube_pod_container_resource_requests_cpu_cores{cluster=\"\"}) / \nsum(kube_node_status_allocatable_cpu_cores{cluster=\"\"})",
           "interval": "30s",
           "legendFormat": "",
           "refId": "A"
@@ -230,8 +226,7 @@ sum(kube_node_status_allocatable_cpu_cores{cluster=\"\"})",
       "pluginVersion": "7.1.0",
       "targets": [
         {
-          "expr": "sum(kube_pod_container_resource_requests_memory_bytes) / 
-sum(kube_node_status_allocatable_memory_bytes)",
+          "expr": "sum(kube_pod_container_resource_requests_memory_bytes) / \nsum(kube_node_status_allocatable_memory_bytes)",
           "interval": "30s",
           "legendFormat": "",
           "refId": "A"
@@ -287,8 +282,7 @@ sum(kube_node_status_allocatable_memory_bytes)",
       "steppedLine": false,
       "targets": [
         {
-          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 
-100)",
+          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * \n100)",
           "interval": "1m",
           "legendFormat": "{{ instance }}",
           "refId": "A"
@@ -380,8 +374,7 @@ sum(kube_node_status_allocatable_memory_bytes)",
       "steppedLine": false,
       "targets": [
         {
-          "expr": "100 - (avg by (instance) (node_memory_MemAvailable_bytes))/(avg by (instance) 
-(node_memory_MemTotal_bytes))* 100\n",
+          "expr": "100 - (avg by (instance) (node_memory_MemAvailable_bytes))/(avg by (instance) \n(node_memory_MemTotal_bytes))* 100\n",
           "interval": "",
           "legendFormat": "{{ instance }}",
           "refId": "A"
@@ -748,11 +741,7 @@ sum(kube_node_status_allocatable_memory_bytes)",
       "steppedLine": false,
       "targets": [
         {
-          "expr": "topk(5, 
-sum(increase(container_cpu_cfs_throttled_periods_total{container!=\"POD\", 
-container!=\"\"}[5m])) by (namespace, container) 
-/sum(increase(container_cpu_cfs_periods_total{container!=\"POD\", container!=\"\"}[5m])) by 
-(namespace, container))",
+          "expr": "topk(5, \nsum(increase(container_cpu_cfs_throttled_periods_total{container!=\"POD\", \ncontainer!=\"\"}[5m])) by (namespace, container) \n/sum(increase(container_cpu_cfs_periods_total{container!=\"POD\", container!=\"\"}[5m])) by \n(namespace, container))",
           "interval": "",
           "legendFormat": "{{ namespace }}-{{ container }}",
           "refId": "A"
@@ -798,6 +787,100 @@ container!=\"\"}[5m])) by (namespace, container)
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "hiddenSeries": false,
+      "id": 19,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.0",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "max by (instance, device) (\n  node_filesystem_avail_bytes{job=\"node-exporter\", fstype!=\"\", device=\"/dev/mapper/ubuntu--vg-ubuntu--lv\"}\n)",
+          "interval": "",
+          "legendFormat": "{{ instance }}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Free Disk Space",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:116",
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:117",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "refresh": false,
@@ -827,5 +910,5 @@ container!=\"\"}[5m])) by (namespace, container)
   "timezone": "",
   "title": "General Cluster View",
   "uid": "M9DzsHtMk",
-  "version": 3
+  "version": 1
 }
