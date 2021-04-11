@@ -14,12 +14,12 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/etcd-io/etcd.git",
+          "remote": "https://github.com/etcd-io/etcd",
           "subdir": "contrib/mixin"
         }
       },
-      "version": "8ee1dd9e23bce4d9770816edf5816b13767ac51d",
-      "sum": "EgKKzxcW3ttt7gjPMX//DNTqNcn/0o2VAIaWJ/HSLEc="
+      "version": "7f97dfd45ac82518716a59c246e2c2a95c9825c7",
+      "sum": "ahKt/JWZ+lSPT2cABu4tIR0g90KT2X66O5qk1XWYF/0="
     },
     {
       "source": {
@@ -38,7 +38,7 @@
           "subdir": "grafana-builder"
         }
       },
-      "version": "5d376192970fc4eab52005ac08168e7109c87075",
+      "version": "89299b1c5e93952622801795353d496fb337f44e",
       "sum": "GRf2GvwEU4jhXV+JOonXSZ4wdDv8mnHBPCQ6TUVd+g8="
     },
     {
@@ -69,7 +69,7 @@
           "subdir": "lib/promgrafonnet"
         }
       },
-      "version": "0e9fc466b492e45cfd1a59a09ab10162bf8b1baa",
+      "version": "778b1cc035a6785e05ead0a022cd7e6cea4c2059",
       "sum": "zv7hXGui6BfHzE9wPatHI/AGZa4A2WKo6pq7ZdqBsps="
     },
     {
@@ -79,7 +79,7 @@
           "subdir": "jsonnet/kube-state-metrics"
         }
       },
-      "version": "aafecf305bbb5c13fcec0ba3e749d1ffcb0d93e1",
+      "version": "31f81f2243ff88ef8774d3f3d487ab3540640e34",
       "sum": "S5qI+PJUdNeYOv76jH5nxwYS9N6U7CRxvyuB1wI4cTE="
     },
     {
@@ -89,7 +89,7 @@
           "subdir": "jsonnet/kube-state-metrics-mixin"
         }
       },
-      "version": "aafecf305bbb5c13fcec0ba3e749d1ffcb0d93e1",
+      "version": "31f81f2243ff88ef8774d3f3d487ab3540640e34",
       "sum": "Yf8mNAHrV1YWzrdV8Ry5dJ8YblepTGw3C0Zp10XIYLo="
     },
     {
@@ -99,7 +99,7 @@
           "subdir": "jsonnet/mixin"
         }
       },
-      "version": "bbb2431b998d18a1b4c61ef1cd933ffa13af1a4c",
+      "version": "fb16b71909dfe3feff2b5e77214002e10bad301d",
       "sum": "6reUygVmQrLEWQzTKcH8ceDbvM+2ztK3z2VBR2K2l+U="
     },
     {
@@ -115,11 +115,11 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/prometheus/alertmanager.git",
+          "remote": "https://github.com/prometheus/alertmanager",
           "subdir": "doc/alertmanager-mixin"
         }
       },
-      "version": "10757eb5fb78c5c58586812721e9833b0d8500ee",
+      "version": "54431be88806b43e8ac4522f2af38f06fc4b7f74",
       "sum": "VP1vn/WTGLZaBgGhGMUO81qNTc/fnp5KtzVjcaxad6Q=",
       "name": "alertmanager"
     },
@@ -130,8 +130,8 @@
           "subdir": "docs/node-mixin"
         }
       },
-      "version": "1dfd858e4aaa35e2595348dd13540700cd9df89b",
-      "sum": "cZTNXQMUCLB5FGYpMn845dcqGdkcYt58qCqOFIV/BoQ="
+      "version": "a5908bf82b25e1232ac59c83cd43ffe337664669",
+      "sum": "sxI7cBEy34JSbB0gHy9xC/ErtFsRzl9eJPsWVqd+XSY="
     },
     {
       "source": {
@@ -147,7 +147,7 @@
     {
       "source": {
         "git": {
-          "remote": "https://github.com/thanos-io/thanos.git",
+          "remote": "https://github.com/thanos-io/thanos",
           "subdir": "mixin"
         }
       },

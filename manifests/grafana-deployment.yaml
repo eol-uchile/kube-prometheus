@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/grafana-datasources: 42a69d2dee9d1a6d6331226efedb56a6
+        checksum/grafana-datasources: 801220e2e41472a06bf6cf304130e6c3
       labels:
         app.kubernetes.io/component: grafana
         app.kubernetes.io/name: grafana
@@ -62,8 +62,8 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/controller-manager
           name: grafana-dashboard-controller-manager
           readOnly: false
-        - mountPath: /grafana-dashboard-definitions/0/general
-          name: grafana-dashboard-general
+        - mountPath: /grafana-dashboard-definitions/0/eol-general
+          name: grafana-dashboard-eol-general
           readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/k8s-resources-cluster
           name: grafana-dashboard-k8s-resources-cluster
@@ -125,9 +125,6 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/workload-total
           name: grafana-dashboard-workload-total
           readOnly: false
-        - mountPath: /etc/grafana
-          name: grafana-config
-          readOnly: false
       nodeSelector:
         beta.kubernetes.io/os: linux
       securityContext:
@@ -154,8 +151,8 @@ spec:
           name: grafana-dashboard-controller-manager
         name: grafana-dashboard-controller-manager
       - configMap:
-          name: grafana-dashboard-general
-        name: grafana-dashboard-general
+          name: grafana-dashboard-eol-general
+        name: grafana-dashboard-eol-general
       - configMap:
           name: grafana-dashboard-k8s-resources-cluster
         name: grafana-dashboard-k8s-resources-cluster
@@ -216,6 +213,3 @@ spec:
       - configMap:
           name: grafana-dashboard-workload-total
         name: grafana-dashboard-workload-total
-      - name: grafana-config
-        secret:
-          secretName: grafana-config
