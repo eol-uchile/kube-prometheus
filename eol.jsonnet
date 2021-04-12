@@ -9,6 +9,9 @@ local kp =
   // (import 'kube-prometheus/addons/external-metrics.libsonnet') +
   {
     values+:: {
+      kubePrometheus+: {
+        platform: 'kubeadm',
+      },
       common+: {
         namespace: 'monitoring',
       },
