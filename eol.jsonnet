@@ -21,7 +21,7 @@ local filter = {
             else if group.name == 'kubernetes-resources' then
               group {
                 rules: std.filter(function(rule)
-                  rule.alert != "KubeMemoryOvercommit",
+                  rule.alert != "KubeMemoryOvercommit" && rule.alert != "CPUThrottlingHigh",
                   group.rules
                 )
               }
