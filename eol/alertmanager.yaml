@@ -23,7 +23,7 @@ receivers:
   - to: felipe.espinoza.r@uchile.cl
     from: no-reply@eol.uchile.cl
     smarthost: mtaprod.uchile.cl:25
-  require_tls: false
+    require_tls: false
 route:
   group_by:
   - namespace
