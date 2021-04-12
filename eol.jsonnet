@@ -32,6 +32,8 @@ local filter = {
 
       },
     },
+    serviceMonitorKubeScheduler:: null,
+    serviceMonitorKubeControllerManager:: null,
   },
 };
 

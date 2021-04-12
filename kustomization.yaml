@@ -40,9 +40,7 @@ resources:
 - manifests/kubernetes-prometheusRule.yaml
 - manifests/kubernetes-serviceMonitorApiserver.yaml
 - manifests/kubernetes-serviceMonitorCoreDNS.yaml
-- manifests/kubernetes-serviceMonitorKubeControllerManager.yaml
 - manifests/kubernetes-serviceMonitorKubelet.yaml
-- manifests/kubernetes-serviceMonitorKubeScheduler.yaml
 - manifests/kube-state-metrics-clusterRoleBinding.yaml
 - manifests/kube-state-metrics-clusterRole.yaml
 - manifests/kube-state-metrics-deployment.yaml
