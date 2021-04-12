@@ -13,6 +13,12 @@ local kp =
         namespace: 'monitoring',
       },
       grafana+:: {
+        config: {  // http://docs.grafana.org/installation/configuration/
+          sections: {
+            // Do not require grafana users to login/authenticate
+            'auth.anonymous': { enabled: true },
+          },
+        },
         dashboards+:: {  // use this method to import your dashboards to Grafana
           'eol-general.json': (import 'eol/general.json'),
         },
@@ -44,13 +50,6 @@ local kp =
               readOnly: false,
 
         }],
-      },
-    },
-    grafana+:: {
-      config: {
-        sections: {
-          "auth.anonymous": {enabled: true},
-        },
       },
     },
     alertmanager+:: {

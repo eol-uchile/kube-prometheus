@@ -18,6 +18,7 @@ spec:
   template:
     metadata:
       annotations:
+        checksum/grafana-config: 5ba26ac8ac220ad2b3236c7b1532ac2d
         checksum/grafana-datasources: 801220e2e41472a06bf6cf304130e6c3
       labels:
         app.kubernetes.io/component: grafana
@@ -125,6 +126,9 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/workload-total
           name: grafana-dashboard-workload-total
           readOnly: false
+        - mountPath: /etc/grafana
+          name: grafana-config
+          readOnly: false
       nodeSelector:
         beta.kubernetes.io/os: linux
       securityContext:
@@ -213,3 +217,6 @@ spec:
       - configMap:
           name: grafana-dashboard-workload-total
         name: grafana-dashboard-workload-total
+      - name: grafana-config
+        secret:
+          secretName: grafana-config
