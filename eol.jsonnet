@@ -1,5 +1,43 @@
+local filter = {
+  kubernetesControlPlane+: {
+    mixin+:: {
+      prometheusAlerts+:: {
+        groups: std.map(
+          function(group)
+            if group.name == 'kubernetes-system-scheduler' then
+              group {
+                rules: std.filter(function(rule)
+                  rule.alert != "KubeSchedulerDown",
+                  group.rules
+                )
+              }
+            else if group.name == 'kubernetes-system-controller-manager' then
+              group {
+                rules: std.filter(function(rule)
+                  rule.alert != "KubeControllerManagerDown",
+                  group.rules
+                )
+              }
+            else if group.name == 'kubernetes-resources' then
+              group {
+                rules: std.filter(function(rule)
+                  rule.alert != "KubeMemoryOvercommit",
+                  group.rules
+                )
+              }
+            else
+              group,
+          super.groups
+        ),
+
+      },
+    },
+  },
+};
+
 local kp =
   (import 'kube-prometheus/main.libsonnet') +
+  filter +
   // Uncomment the following imports to enable its patches
   // (import 'kube-prometheus/addons/anti-affinity.libsonnet') +
   // (import 'kube-prometheus/addons/managed-cluster.libsonnet') +
