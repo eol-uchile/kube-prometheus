@@ -22,34 +22,6 @@ local kp =
         dashboards+:: {  // use this method to import your dashboards to Grafana
           'eol-general.json': (import 'eol/general.json'),
         },
-        datasources +:: [{
-            name: 'elasticsearch',
-            type: 'elasticsearch',
-            access: 'proxy',
-            url: 'http://es6.graylog.svc.cluster.local:9200',
-            orgId: 1,
-            version: 7,
-            editable: false,
-            typeLogoUrl: "",
-            password: "",
-            user: "",
-            database: "graylog_*",
-            basicAuth: false,
-            basicAuthUser: "",
-            basicAuthPassword: "",
-            withCredentials: false,
-            isDefault: false,
-            jsonData: {
-              "esVersion": 60,
-              "logLevelField": "",
-              "logMessageField": "",
-              "maxConcurrentShardRequests": 256,
-                "timeField": "timestamp"
-              },
-              secureJsonFields: {},
-              readOnly: false,
-
-        }],
       },
     },
     alertmanager+:: {
