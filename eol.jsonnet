@@ -74,6 +74,14 @@ local kp =
         },
       }
     },
+    prometheus+:: {
+      prometheus+: {
+        spec+: {
+          retention: '1y',
+          retentionSize: '1024MB',
+        }
+      },
+    },
   };
 
 //{ 'setup/0namespace-namespace': kp.kubePrometheus.namespace } +
