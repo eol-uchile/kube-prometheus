@@ -4842,9 +4842,12 @@ items:
                           "values": false
                       },
                       "showThresholdLabels": false,
-                      "showThresholdMarkers": true
+                      "showThresholdMarkers": true,
+                      "text": {
+
+                      }
                   },
-                  "pluginVersion": "7.1.0",
+                  "pluginVersion": "7.4.3",
                   "targets": [
                       {
                           "expr": "1 - avg(rate(node_cpu_seconds_total{mode=\"idle\", \ncluster=\"\"}[$__interval]))",
@@ -4903,12 +4906,15 @@ items:
                           "values": false
                       },
                       "showThresholdLabels": false,
-                      "showThresholdMarkers": true
+                      "showThresholdMarkers": true,
+                      "text": {
+
+                      }
                   },
-                  "pluginVersion": "7.1.0",
+                  "pluginVersion": "7.4.3",
                   "targets": [
                       {
-                          "expr": "1 - sum(:node_memory_MemAvailable_bytes:sum) / \nsum(kube_node_status_allocatable_memory_bytes)",
+                          "expr": "sum(container_memory_rss{container!=\"\"})/sum(kube_node_status_allocatable{resource=\"memory\"})",
                           "interval": "30s",
                           "legendFormat": "",
                           "refId": "A"
@@ -4964,12 +4970,15 @@ items:
                           "values": false
                       },
                       "showThresholdLabels": false,
-                      "showThresholdMarkers": true
+                      "showThresholdMarkers": true,
+                      "text": {
+
+                      }
                   },
-                  "pluginVersion": "7.1.0",
+                  "pluginVersion": "7.4.3",
                   "targets": [
                       {
-                          "expr": "sum(kube_pod_container_resource_requests_cpu_cores{cluster=\"\"}) / \nsum(kube_node_status_allocatable_cpu_cores{cluster=\"\"})",
+                          "expr": "sum(sum(kube_pod_container_resource_requests{resource=\"cpu\"}) by (namespace, pod, node)\r\n  * on (namespace, pod) group_left() (sum(kube_pod_status_phase{phase=\"Running\"}) by (pod, namespace) == 1))/sum(kube_node_status_allocatable{resource='cpu'})",
                           "interval": "30s",
                           "legendFormat": "",
                           "refId": "A"
@@ -5025,12 +5034,15 @@ items:
                           "values": false
                       },
                       "showThresholdLabels": false,
-                      "showThresholdMarkers": true
+                      "showThresholdMarkers": true,
+                      "text": {
+
+                      }
                   },
-                  "pluginVersion": "7.1.0",
+                  "pluginVersion": "7.4.3",
                   "targets": [
                       {
-                          "expr": "sum(kube_pod_container_resource_requests_memory_bytes) / \nsum(kube_node_status_allocatable_memory_bytes)",
+                          "expr": "sum(sum(kube_pod_container_resource_requests{resource=\"memory\"}) by (namespace, pod, node)\r\n  * on (namespace, pod) group_left() (sum(kube_pod_status_phase{phase=\"Running\"}) by (pod, namespace) == 1))/sum(kube_node_status_allocatable{resource='memory'})",
                           "interval": "30s",
                           "legendFormat": "",
                           "refId": "A"
@@ -5081,8 +5093,11 @@ items:
                   "lines": true,
                   "linewidth": 1,
                   "nullPointMode": "null",
+                  "options": {
+                      "alertThreshold": true
+                  },
                   "percentage": false,
-                  "pluginVersion": "7.1.0",
+                  "pluginVersion": "7.4.3",
                   "pointradius": 2,
                   "points": false,
                   "renderer": "flot",
@@ -5187,8 +5202,11 @@ items:
                   "lines": true,
                   "linewidth": 1,
                   "nullPointMode": "null",
+                  "options": {
+                      "alertThreshold": true
+                  },
                   "percentage": false,
-                  "pluginVersion": "7.1.0",
+                  "pluginVersion": "7.4.3",
                   "pointradius": 2,
                   "points": false,
                   "renderer": "flot",
@@ -5260,168 +5278,11 @@ items:
                   "bars": false,
                   "dashLength": 10,
                   "dashes": false,
-                  "datasource": "elasticsearch",
+                  "datasource": "prometheus",
                   "fieldConfig": {
                       "defaults": {
                           "custom": {
 
-                          }
-                      },
-                      "overrides": [
-
-                      ]
-                  },
-                  "fill": 1,
-                  "fillGradient": 0,
-                  "gridPos": {
-                      "h": 9,
-                      "w": 12,
-                      "x": 0,
-                      "y": 15
-                  },
-                  "hiddenSeries": false,
-                  "id": 2,
-                  "legend": {
-                      "avg": false,
-                      "current": false,
-                      "max": false,
-                      "min": false,
-                      "show": true,
-                      "total": false,
-                      "values": false
-                  },
-                  "lines": true,
-                  "linewidth": 1,
-                  "nullPointMode": "connected",
-                  "percentage": false,
-                  "pluginVersion": "7.1.0",
-                  "pointradius": 2,
-                  "points": false,
-                  "renderer": "flot",
-                  "seriesOverrides": [
-
-                  ],
-                  "spaceLength": 10,
-                  "stack": false,
-                  "steppedLine": false,
-                  "targets": [
-                      {
-                          "bucketAggs": [
-                              {
-                                  "fake": true,
-                                  "field": "vhost",
-                                  "id": "3",
-                                  "settings": {
-                                      "min_doc_count": 0,
-                                      "order": "desc",
-                                      "orderBy": "_term",
-                                      "size": "10"
-                                  },
-                                  "type": "terms"
-                              },
-                              {
-                                  "field": "timestamp",
-                                  "id": "2",
-                                  "settings": {
-                                      "interval": "auto",
-                                      "min_doc_count": 0,
-                                      "trimEdges": 0
-                                  },
-                                  "type": "date_histogram"
-                              }
-                          ],
-                          "metrics": [
-                              {
-                                  "field": "request_time",
-                                  "id": "1",
-                                  "meta": {
-
-                                  },
-                                  "settings": {
-
-                                  },
-                                  "type": "max"
-                              }
-                          ],
-                          "refId": "A",
-                          "timeField": "timestamp"
-                      }
-                  ],
-                  "thresholds": [
-
-                  ],
-                  "timeFrom": null,
-                  "timeRegions": [
-
-                  ],
-                  "timeShift": null,
-                  "title": "Request Time",
-                  "tooltip": {
-                      "shared": true,
-                      "sort": 0,
-                      "value_type": "individual"
-                  },
-                  "type": "graph",
-                  "xaxis": {
-                      "buckets": null,
-                      "mode": "time",
-                      "name": null,
-                      "show": true,
-                      "values": [
-
-                      ]
-                  },
-                  "yaxes": [
-                      {
-                          "format": "short",
-                          "label": null,
-                          "logBase": 1,
-                          "max": null,
-                          "min": null,
-                          "show": true
-                      },
-                      {
-                          "format": "short",
-                          "label": null,
-                          "logBase": 1,
-                          "max": null,
-                          "min": null,
-                          "show": true
-                      }
-                  ],
-                  "yaxis": {
-                      "align": false,
-                      "alignLevel": null
-                  }
-              },
-              {
-                  "aliasColors": {
-
-                  },
-                  "bars": false,
-                  "dashLength": 10,
-                  "dashes": false,
-                  "datasource": "elasticsearch",
-                  "fieldConfig": {
-                      "defaults": {
-                          "custom": {
-                              "align": null
-                          },
-                          "mappings": [
-
-                          ],
-                          "thresholds": {
-                              "mode": "absolute",
-                              "steps": [
-                                  {
-                                      "color": "green",
-                                      "value": null
-                                  },
-                                  {
-                                      "color": "red",
-                                      "value": 80
-                                  }
-                              ]
                           }
                       },
                       "overrides": [
@@ -5433,11 +5294,11 @@ items:
                   "gridPos": {
                       "h": 8,
                       "w": 12,
-                      "x": 12,
+                      "x": 0,
                       "y": 15
                   },
                   "hiddenSeries": false,
-                  "id": 4,
+                  "id": 19,
                   "legend": {
                       "avg": false,
                       "current": false,
@@ -5450,8 +5311,11 @@ items:
                   "lines": true,
                   "linewidth": 1,
                   "nullPointMode": "null",
+                  "options": {
+                      "alertThreshold": true
+                  },
                   "percentage": false,
-                  "pluginVersion": "7.1.0",
+                  "pluginVersion": "7.4.3",
                   "pointradius": 2,
                   "points": false,
                   "renderer": "flot",
@@ -5463,58 +5327,10 @@ items:
                   "steppedLine": false,
                   "targets": [
                       {
-                          "bucketAggs": [
-                              {
-                                  "fake": true,
-                                  "field": "vhost",
-                                  "id": "4",
-                                  "settings": {
-                                      "min_doc_count": 0,
-                                      "order": "desc",
-                                      "orderBy": "_term",
-                                      "size": "10"
-                                  },
-                                  "type": "terms"
-                              },
-                              {
-                                  "fake": true,
-                                  "field": "status",
-                                  "id": "3",
-                                  "settings": {
-                                      "min_doc_count": 0,
-                                      "order": "desc",
-                                      "orderBy": "_term",
-                                      "size": "10"
-                                  },
-                                  "type": "terms"
-                              },
-                              {
-                                  "field": "timestamp",
-                                  "id": "2",
-                                  "settings": {
-                                      "interval": "auto",
-                                      "min_doc_count": 0,
-                                      "trimEdges": 0
-                                  },
-                                  "type": "date_histogram"
-                              }
-                          ],
-                          "metrics": [
-                              {
-                                  "field": "select field",
-                                  "id": "1",
-                                  "meta": {
-
-                                  },
-                                  "settings": {
-
-                                  },
-                                  "type": "count"
-                              }
-                          ],
-                          "query": "label_io_kubernetes_pod_namespace: ingress-nginx",
-                          "refId": "A",
-                          "timeField": "timestamp"
+                          "expr": "max by (instance, device) (\n  node_filesystem_avail_bytes{job=\"node-exporter\", fstype!=\"\", device=\"/dev/mapper/ubuntu--vg-ubuntu--lv\"}\n)",
+                          "interval": "",
+                          "legendFormat": "{{ instance }}",
+                          "refId": "A"
                       }
                   ],
                   "thresholds": [
@@ -5525,7 +5341,7 @@ items:
 
                   ],
                   "timeShift": null,
-                  "title": "HTTP Results",
+                  "title": "Free Disk Space",
                   "tooltip": {
                       "shared": true,
                       "sort": 0,
@@ -5543,7 +5359,8 @@ items:
                   },
                   "yaxes": [
                       {
-                          "format": "short",
+                          "$$hashKey": "object:116",
+                          "format": "decbytes",
                           "label": null,
                           "logBase": 1,
                           "max": null,
@@ -5551,6 +5368,7 @@ items:
                           "show": true
                       },
                       {
+                          "$$hashKey": "object:117",
                           "format": "short",
                           "label": null,
                           "logBase": 1,
@@ -5588,7 +5406,7 @@ items:
                       "h": 8,
                       "w": 12,
                       "x": 12,
-                      "y": 23
+                      "y": 15
                   },
                   "hiddenSeries": false,
                   "id": 14,
@@ -5604,8 +5422,11 @@ items:
                   "lines": true,
                   "linewidth": 1,
                   "nullPointMode": "null",
+                  "options": {
+                      "alertThreshold": true
+                  },
                   "percentage": false,
-                  "pluginVersion": "7.1.0",
+                  "pluginVersion": "7.4.3",
                   "pointradius": 2,
                   "points": false,
                   "renderer": "flot",
@@ -5694,10 +5515,10 @@ items:
                       "h": 8,
                       "w": 12,
                       "x": 0,
-                      "y": 24
+                      "y": 23
                   },
                   "hiddenSeries": false,
-                  "id": 19,
+                  "id": 21,
                   "legend": {
                       "avg": false,
                       "current": false,
@@ -5710,8 +5531,11 @@ items:
                   "lines": true,
                   "linewidth": 1,
                   "nullPointMode": "null",
+                  "options": {
+                      "alertThreshold": true
+                  },
                   "percentage": false,
-                  "pluginVersion": "7.1.0",
+                  "pluginVersion": "7.4.3",
                   "pointradius": 2,
                   "points": false,
                   "renderer": "flot",
@@ -5723,21 +5547,20 @@ items:
                   "steppedLine": false,
                   "targets": [
                       {
-                          "expr": "max by (instance, device) (\n  node_filesystem_avail_bytes{job=\"node-exporter\", fstype!=\"\", device=\"/dev/mapper/ubuntu--vg-ubuntu--lv\"}\n)",
+                          "expr": "probe_success",
                           "interval": "",
-                          "legendFormat": "{{ instance }}",
+                          "legendFormat": "{{instance}}",
+                          "queryType": "randomWalk",
                           "refId": "A"
                       }
                   ],
                   "thresholds": [
 
                   ],
-                  "timeFrom": null,
                   "timeRegions": [
 
                   ],
-                  "timeShift": null,
-                  "title": "Free Disk Space",
+                  "title": "Site Online",
                   "tooltip": {
                       "shared": true,
                       "sort": 0,
@@ -5755,8 +5578,7 @@ items:
                   },
                   "yaxes": [
                       {
-                          "$$hashKey": "object:116",
-                          "format": "decbytes",
+                          "format": "short",
                           "label": null,
                           "logBase": 1,
                           "max": null,
@@ -5764,7 +5586,116 @@ items:
                           "show": true
                       },
                       {
-                          "$$hashKey": "object:117",
+                          "format": "short",
+                          "label": null,
+                          "logBase": 1,
+                          "max": null,
+                          "min": null,
+                          "show": true
+                      }
+                  ],
+                  "yaxis": {
+                      "align": false,
+                      "alignLevel": null
+                  }
+              },
+              {
+                  "aliasColors": {
+
+                  },
+                  "bars": false,
+                  "dashLength": 10,
+                  "dashes": false,
+                  "datasource": "prometheus",
+                  "fieldConfig": {
+                      "defaults": {
+                          "custom": {
+
+                          }
+                      },
+                      "overrides": [
+
+                      ]
+                  },
+                  "fill": 1,
+                  "fillGradient": 0,
+                  "gridPos": {
+                      "h": 8,
+                      "w": 12,
+                      "x": 12,
+                      "y": 23
+                  },
+                  "hiddenSeries": false,
+                  "id": 23,
+                  "legend": {
+                      "avg": false,
+                      "current": false,
+                      "max": false,
+                      "min": false,
+                      "show": true,
+                      "total": false,
+                      "values": false
+                  },
+                  "lines": true,
+                  "linewidth": 1,
+                  "nullPointMode": "null",
+                  "options": {
+                      "alertThreshold": true
+                  },
+                  "percentage": false,
+                  "pluginVersion": "7.4.3",
+                  "pointradius": 2,
+                  "points": false,
+                  "renderer": "flot",
+                  "seriesOverrides": [
+
+                  ],
+                  "spaceLength": 10,
+                  "stack": false,
+                  "steppedLine": false,
+                  "targets": [
+                      {
+                          "expr": "probe_ssl_earliest_cert_expiry - time()",
+                          "interval": "",
+                          "legendFormat": "{{instance}}",
+                          "queryType": "randomWalk",
+                          "refId": "A"
+                      }
+                  ],
+                  "thresholds": [
+
+                  ],
+                  "timeRegions": [
+
+                  ],
+                  "title": "Certificate expiration",
+                  "tooltip": {
+                      "shared": true,
+                      "sort": 0,
+                      "value_type": "individual"
+                  },
+                  "type": "graph",
+                  "xaxis": {
+                      "buckets": null,
+                      "mode": "time",
+                      "name": null,
+                      "show": true,
+                      "values": [
+
+                      ]
+                  },
+                  "yaxes": [
+                      {
+                          "$$hashKey": "object:153",
+                          "format": "s",
+                          "label": null,
+                          "logBase": 1,
+                          "max": null,
+                          "min": null,
+                          "show": true
+                      },
+                      {
+                          "$$hashKey": "object:154",
                           "format": "short",
                           "label": null,
                           "logBase": 1,
@@ -5780,7 +5711,7 @@ items:
               }
           ],
           "refresh": false,
-          "schemaVersion": 26,
+          "schemaVersion": 27,
           "style": "dark",
           "tags": [
 
