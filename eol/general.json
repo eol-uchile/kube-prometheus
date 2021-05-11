@@ -479,7 +479,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max by (instance, device) (\n  node_filesystem_avail_bytes{job=\"node-exporter\", fstype!=\"\", device=\"/dev/mapper/ubuntu--vg-ubuntu--lv\"}\n)",
+          "expr": "max by (instance, device) (\n  node_filesystem_avail_bytes{fstype!=\"\", device=\"/dev/mapper/ubuntu--vg-ubuntu--lv\"}\n)",
           "interval": "",
           "legendFormat": "{{ instance }}",
           "refId": "A"
@@ -679,7 +679,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Site Online",
       "tooltip": {
         "shared": true,
@@ -773,7 +775,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Certificate expiration",
       "tooltip": {
         "shared": true,
