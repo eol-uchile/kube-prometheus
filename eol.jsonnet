@@ -63,11 +63,9 @@ local kp =
           'eol-general.json': (import 'eol/general.json'),
         },
       },
-      alertmanager+: {
-        config: importstr 'eol/alertmanager.yaml',
-      },
     },
     alertmanager+:: {
+      secret: importstr 'eol/alertmanager.yaml',
       alertmanager+: {
         spec+: {
           replicas: 1,

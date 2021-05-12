@@ -1,40 +1,22 @@
-global:
-  resolve_timeout: 5m
-inhibit_rules:
-- equal:
-  - namespace
-  - alertname
-  source_match:
-    severity: critical
-  target_match_re:
-    severity: warning|info
-- equal:
-  - namespace
-  - alertname
-  source_match:
-    severity: warning
-  target_match_re:
-    severity: info
-receivers:
-- name: Default
-- name: Watchdog
-- name: Critical
-  email_configs:
-  - to: felipe.espinoza.r@uchile.cl
-    from: no-reply@eol.uchile.cl
-    smarthost: mtaprod.uchile.cl:25
-    require_tls: false
-route:
-  group_by:
-  - namespace
-  group_interval: 5m
-  group_wait: 30s
-  receiver: Default
-  repeat_interval: 12h
-  routes:
-  - match:
-      alertname: Watchdog
-    receiver: Watchdog
-  - match:
-      severity: critical
-    receiver: Critical
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: alertmanager-main
+  namespace: monitoring
+spec:
+  encryptedData:
+    alertmanager.yaml: AgCDBYs+7813XZt8LgFfmf2WHHuU2FTdh1K+nl0AJDCqRwxg9BpTBEPLXisPzVmw6rlxNlgUcQBDJ8uiHyHrbyFmYqFPAapC689L9/+P1yBep+CJX04N4mrQ+/UZGmdYnYyEkgHNcHDtZUpFzUjp8n46I2YSap8aYM1QBy/LtKAOQ8bIohrWUHmktHGeqmQCiKYa9/Yql5L/TLfa1xS/2oSzc/65u3tNH1lJ//ysdZY2x3LpOvBHwRzxl1CWTtQ2qwliceKJ/PX2Wz99u7avOvL3vEtX/mwxKt+J6taaIWnEcf1Hmj8TgPV31eP/21hiSZCoZQ/QcAQBJkYK2FRxQN4DGMZjpXZfsfj/WyTwPbVkZ8S88fWuwzc40pGkE5JpX81zLiFX59rjeVZLk2NzFZk85W/4hV2YWaCD8Rugsf3mOqGBb9t8Nj215A7r5QiCt5PbqXb0rprYHgvxMD4NsD0fm9HY7l5P+3ylJRJnXUH+pNsaAl+nHcoA3rntFNil/wK3tJFlhhD9UiMtX7xSfFSpDp04DPb+lWg77srkyJwlj3BMWqp8I3YS5o2XCxU5tp9B6/S06ixgUOVuyFQdeyTqiDVYEt17SzSFzfWdH+l12iT9J8bu7qeN9r9eBt0YyWDiEaqWA9cxF+XUSyW09sR1bY9/CERKqUAPQiiI0tCfBKsdF04yHYe5v4Xv2dZ66HRAeNlDkIV5m9k8Vel0hy+IZlVk0xXULDOZGbnqEbpG1n2TTkQQ0bWA/qBz4TK+Q0kr0GF0mx6AiYzny0ScTV/dnC5ZnzCESnXT1qysLsNYWfEiBKbQzyxy6eY9e+W3MdTle5ucLjMuuMbpbFG9EIZNLY/g+1SHc3dRODGWIP6zIAdoDH3GAVQX2/xGO33zrU6QnEt6NUbt/nyuGlBul6XH/5A/UfrODJ5Q7IWwNPQp6zSwIyv+wttrAXKlpn/YlSpV3BNPeTv2LKrtj1c/DTKzCk/8qLFhss4RaJf/fXkM8EfjGU+r+xvQC0ihtGeV0Rkjbh72Ez4/iykJLVy2wNB8qiYRkTdS8soJqK7/r3SFR6Mz+qhUDu5NlIz7e4NKirFu42lPdCBGxfGW1nEJtqA6A6p8fSuP0OPlRd6JMVqhgP8ad2bsn4gpHjZ2MeH4S8jhX/4ZPxP3WC8SsBWbdaqJpdfjBn3ICv/U8JloNQcUFJQWxw4xvlvIhJlpZoIlqBDCku942tidG5TBwOXxfoN/gdSZW+NYLeoUsTwZNg7fd8XqjIQis41TedH1gQu3tWbBh9SEHlfkEAwRk2we/3DSARs3UGKq3q/MA5UgDVxvpxx79jL49vF5APgN+R6PUJcodhXWZBkzcvVOVve15qM+rMKVv8e1nT/Ig6DXOiMc/YDMzaABnRVe69DVFM8fqlSsBSQH3F448/AqnvgiEjR/i3MNzZXTSdgAAl0uj0lRG8xmrf8cMyTJlMkrwh6VDLeMyh358v75/P7RJd+eVMjyPKY+GpjK73btvBtc8onupp1iQ954+rf5iMpSozVef4IFm6b/19cBWJPcqZYnl33Fzuruy03R1O186ID9jswwKELjJQKi67QfWAtxjrxX+PqFcuN3e5+PNOvp/lZ4qw6WR9WXC8pMr/6O1oYrmm8NLxM4PSBy/lgPg0+zC/xnEFnPwAp7SLuJiz1i81MElgETlATGCJtk1DOcJCU0URAo69ybAm33lfFMNXM8gFVzQiZAMJHoEEN7+LjbkUFsIYaAuyqa/tuxFrWGZTnaK2wCkdPEeS7iRHufFOEdEVT8UIeScffT8MHzok1I21hZygiGyhoZM0TvlbKplaHaOwJFU0EbvgBtZepfBZkUWgNqFv9jxOjMfv/ytZ/0moKzF3UjWUdRzCHeaq1sXtIOI17vddQJ2yXVmWc=
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        alertmanager: main
+        app.kubernetes.io/component: alert-router
+        app.kubernetes.io/name: alertmanager
+        app.kubernetes.io/part-of: kube-prometheus
+        app.kubernetes.io/version: 0.21.0
+      name: alertmanager-main
+      namespace: monitoring
+    type: Opaque
+
