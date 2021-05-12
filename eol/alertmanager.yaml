@@ -18,6 +18,8 @@ inhibit_rules:
 receivers:
 - name: Default
 - name: Watchdog
+  webhook_configs:
+  - url: 'http://discord:9094'
 - name: Critical
   email_configs:
   - to: felipe.espinoza.r@uchile.cl
