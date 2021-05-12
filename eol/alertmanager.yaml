@@ -1,22 +1,40 @@
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
-metadata:
-  creationTimestamp: null
-  name: alertmanager-main
-  namespace: monitoring
-spec:
-  encryptedData:
-    alertmanager.yaml: AgA7tjg6TcoBhZf+bFrZenYN4qSmedWe2ttT8AGxas+q4GuMqhIyOUXzk9lm+ZsLJ20DLmENZPSvZJEDy06yn+7aHMl5qXX0Kg0EGgbhbnSEgxN5RVaDfj5sPnC0asdT7wlhVDMx/3uI88L4E09CHPJqbedVdoRdmY7mcNTQ2YzoERBDzeoQuZeH38Kt6peDhnoYnDuuIMAUDkgYuclGdGVgCnfUSa8NDPuFuScG9TELiVr8K1YP5bqOXJBDKiUl9STACD+SNrp4DkyXXu/Xg/r1QVdnLYoO3QlxzG859MhYv+ho2agzBJKQ2mDH2GQdgWv6QvLAeuelot+6aK9g/FDWBUPa9CwF9G06AGlbUckfTnjHioBOy7dp+wkKLRe2RESelI84ufPcTii88JsEqf9ishdvViX6YZOpkBNL5G5KbwT3NENO5rELbOhSzhp45bSXoQfS/TCllTTEPs8ojJcjjZW7I4pTIWiKSCnATCIjGcVd7HJwn5Y7wgQZzyxBxmlCNEFCJCFiAsE5iowyNZ/JoKdxqDjM+76OPhMoBqxdiack90YjkH81GcydlBuENciNWCiV4OW1ckFWgqAUielWU/0ftXq0ToCUm4zM9qrx3BrV3EZYgq3mE8Gt71zN+ODyINdQHno5sJy/niV6PFw5LYLY0dd32LnJhspqIVG+IMksULObv/k8ifwkAo70FHDicOTdT2gfef4CQh/gcAxwXfYIfYEkSK92fp00CWY614J3oS75j7o4iAkWR1nJOXMq915rhbhvL2PgCwt9l9J6wCeJKwolRxHzCMdodtn9SAM3nTvS6JplCANwRBVUzKZjCgtbCU6SFLe0hrajnT5f/1aFeOaNrpUTqweEv/zVIsxwPimuWgE5Q/nQd8tHbxaXIiVjc2ofaGFsgKphb2dkrZkpIS7IHEgfP6mjls9ijOMANJgrUyR1+2cRORQX1dUbI1ke1pqt6KBbisAqnLWaMSg5dCKTlX7AQU0+L6ezip8oYP5dJc0s86SLSwWRHcVajiuC/Y0RUzeyISZmjg1LAMQawu81K9fx3FGO/fx1wDpys+2MJ7sRgeVUe1GAVg+EHrTe79v7V5eylFBNis4H+Ark26T3sN/FviHjcr8U/zbpCP9BHWr4aHKMJyaIet2y+E3n+hFz0j5wCt6E8Mv48CbfKAcVzOUc7Gk9PkSZC1TwwmunYWLOYiXekJLlerZPGhBXUvcAUBR9bU8LyB8fn/TjcQuSfJFN4tOKe57NOpbFmeUdqkFcpXvhA6ODFz/HaoVymXtP9afywCxTseTbaWW6q1a8nOLLhOmMdkLRek/mvKC9Zyf2pX8f1ulgO72LXlKQ96nhiBu31iRol3kkPoWmMfgFKrvlc1XIwm8CjTHL5baHe7YSH2+Bt0czRPdPWWsFd7LPDAVdxzDmXZpK/K27KdsUEI0ozXgZeXN4DLhL200rPfOagBlkvzVbm48pRc+/A4or1/JscZlcSQGReBUnRpheYk0QskLi9Raq6QuZjxxJwLfe5xeqDjApm6x1E5tYtfFeE6T3+IJNyrwU5h74//1n+Sh/ivI6G1yj46UeiwhzdFkom7UEmq1vN7Qnggj7ScI3KhMNHRMs6vfTCZkOiRAaktB4VhDO0CkfmOSfMYw28sY73hzvm2t8hfNJXkZChAaBCmMJUaJt8MuZUKtwXDE2ss5TV9aXXBAw0dWIK6jDU2vLx3Lq/QlxDTIvxIW9cwu7CIsKPiLVGnXfdxxIjptdIbv9wtWbhbcCa4Tl5lhqIIbKSu6JYXEYN01pxgkJ6z20AMLFEaPdmQk+F2KXxOvOcT1MzMnhP3NM1U5kojsaz/mTJpIOAJSlH3VmmqHonIFBBc/I8rBHdLk8/4klJLSPX2zO6/1NkP1wLej6yMTqECFQgRKXvK2m15gFbus47A6p+MeOUy5Ci6hWgDnElmxxscGuxcM+wN0gNeU=
-  template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        alertmanager: main
-        app.kubernetes.io/component: alert-router
-        app.kubernetes.io/name: alertmanager
-        app.kubernetes.io/part-of: kube-prometheus
-        app.kubernetes.io/version: 0.21.0
-      name: alertmanager-main
-      namespace: monitoring
-    type: Opaque
-
+global:
+  resolve_timeout: 5m
+inhibit_rules:
+- equal:
+  - namespace
+  - alertname
+  source_match:
+    severity: critical
+  target_match_re:
+    severity: warning|info
+- equal:
+  - namespace
+  - alertname
+  source_match:
+    severity: warning
+  target_match_re:
+    severity: info
+receivers:
+- name: Default
+- name: Watchdog
+- name: Critical
+  email_configs:
+  - to: felipe.espinoza.r@uchile.cl
+    from: no-reply@eol.uchile.cl
+    smarthost: mtaprod.uchile.cl:25
+    require_tls: false
+route:
+  group_by:
+  - namespace
+  group_interval: 5m
+  group_wait: 30s
+  receiver: Default
+  repeat_interval: 12h
+  routes:
+  - match:
+      alertname: Watchdog
+    receiver: Watchdog
+  - match:
+      severity: critical
+    receiver: Critical
