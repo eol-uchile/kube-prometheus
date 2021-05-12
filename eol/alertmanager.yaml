@@ -18,14 +18,14 @@ inhibit_rules:
 receivers:
 - name: Default
 - name: Watchdog
-  webhook_configs:
-  - url: 'http://discord:9094'
 - name: Critical
   email_configs:
   - to: felipe.espinoza.r@uchile.cl
     from: no-reply@eol.uchile.cl
     smarthost: mtaprod.uchile.cl:25
     require_tls: false
+  webhook_configs:
+  - url: 'http://discord:9094'
 route:
   group_by:
   - namespace
