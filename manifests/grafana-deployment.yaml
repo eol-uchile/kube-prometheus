@@ -66,8 +66,23 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/controller-manager
           name: grafana-dashboard-controller-manager
           readOnly: false
+        - mountPath: /grafana-dashboard-definitions/0/eol-elasticsearch
+          name: grafana-dashboard-eol-elasticsearch
+          readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/eol-general
           name: grafana-dashboard-eol-general
+          readOnly: false
+        - mountPath: /grafana-dashboard-definitions/0/eol-minio
+          name: grafana-dashboard-eol-minio
+          readOnly: false
+        - mountPath: /grafana-dashboard-definitions/0/eol-mongodb
+          name: grafana-dashboard-eol-mongodb
+          readOnly: false
+        - mountPath: /grafana-dashboard-definitions/0/eol-mysql
+          name: grafana-dashboard-eol-mysql
+          readOnly: false
+        - mountPath: /grafana-dashboard-definitions/0/eol-redis
+          name: grafana-dashboard-eol-redis
           readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/k8s-resources-cluster
           name: grafana-dashboard-k8s-resources-cluster
@@ -158,8 +173,23 @@ spec:
           name: grafana-dashboard-controller-manager
         name: grafana-dashboard-controller-manager
       - configMap:
+          name: grafana-dashboard-eol-elasticsearch
+        name: grafana-dashboard-eol-elasticsearch
+      - configMap:
           name: grafana-dashboard-eol-general
         name: grafana-dashboard-eol-general
+      - configMap:
+          name: grafana-dashboard-eol-minio
+        name: grafana-dashboard-eol-minio
+      - configMap:
+          name: grafana-dashboard-eol-mongodb
+        name: grafana-dashboard-eol-mongodb
+      - configMap:
+          name: grafana-dashboard-eol-mysql
+        name: grafana-dashboard-eol-mysql
+      - configMap:
+          name: grafana-dashboard-eol-redis
+        name: grafana-dashboard-eol-redis
       - configMap:
           name: grafana-dashboard-k8s-resources-cluster
         name: grafana-dashboard-k8s-resources-cluster
