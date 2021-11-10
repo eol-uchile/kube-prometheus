@@ -36,7 +36,7 @@ spec:
     requests:
       memory: 400Mi
   retention: 1y
-  retentionSize: 1024MB
+  retentionSize: 4096MB
   ruleNamespaceSelector: {}
   ruleSelector: {}
   securityContext:
