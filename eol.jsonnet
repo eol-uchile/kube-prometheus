@@ -78,7 +78,7 @@ local kp =
       prometheus+: {
         spec+: {
           retention: '1y',
-          retentionSize: '2048MB',
+          retentionSize: '4096MB',
         }
       },
     },
