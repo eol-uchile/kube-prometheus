@@ -4,3 +4,6 @@ vendor/
 ./auth
 .swp
 crdschemas/
+
+developer-workspace/gitpod/_output
+kind

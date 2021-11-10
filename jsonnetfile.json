@@ -3,11 +3,12 @@
   "dependencies": [
     {
       "source": {
-        "local": {
-          "directory": "jsonnet/kube-prometheus"
+        "git": {
+          "remote": "https://github.com/prometheus-operator/kube-prometheus.git",
+          "subdir": "jsonnet/kube-prometheus"
         }
       },
-      "version": ""
+      "version": "release-0.9"
     }
   ],
   "legacyImports": true

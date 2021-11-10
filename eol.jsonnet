@@ -61,6 +61,11 @@ local kp =
         },
         dashboards+:: {  // use this method to import your dashboards to Grafana
           'eol-general.json': (import 'eol/general.json'),
+          'eol-elasticsearch.json': (import 'eol/elasticsearch.json'),
+          'eol-minio.json': (import 'eol/minio.json'),
+          'eol-mongodb.json': (import 'eol/mongodb.json'),
+          'eol-mysql.json': (import 'eol/mysql.json'),
+          'eol-redis.json': (import 'eol/redis.json'),
         },
       },
       alertmanager+: {
@@ -78,7 +83,7 @@ local kp =
       prometheus+: {
         spec+: {
           retention: '1y',
-          retentionSize: '1024MB',
+          retentionSize: '4096MB',
         }
       },
     },
