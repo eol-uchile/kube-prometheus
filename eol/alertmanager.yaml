@@ -20,8 +20,8 @@ receivers:
 - name: Watchdog
 - name: Critical
   email_configs:
-  - to: felipe.espinoza.r@uchile.cl
-    from: no-reply@eol.uchile.cl
+  - to: eol-devops@uchile.cl
+    from: no-reply@uchile.cl
     smarthost: mtaprod.uchile.cl:25
     require_tls: false
   webhook_configs:
