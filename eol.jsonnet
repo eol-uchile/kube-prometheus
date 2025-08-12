@@ -37,6 +37,13 @@ local filter = {
   },
 };
 
+local k = import 'ksonnet/ksonnet.beta.3/k.libsonnet';
+local clusterRole = k.rbac.v1.clusterRole;
+local policyRule = clusterRole.rulesType;
+local extra_cluster_role_resources = policyRule.new() +
+                                     policyRule.withApiGroups(['']) +
+                                     policyRule.withResources(['pods']) +
+                                     policyRule.withVerbs(['get','list','watch']);
 local kp =
   (import 'kube-prometheus/main.libsonnet') +
   filter +
@@ -47,6 +54,13 @@ local kp =
   // (import 'kube-prometheus/addons/static-etcd.libsonnet') +
   // (import 'kube-prometheus/addons/custom-metrics.libsonnet') +
   // (import 'kube-prometheus/addons/external-metrics.libsonnet') +
+  {
+    prometheus+:: {
+      clusterRole+: {
+        rules+: [extra_cluster_role_resources],
+      },
+    },
+  } +
   {
     values+:: {
       common+: {
