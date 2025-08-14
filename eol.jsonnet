@@ -42,7 +42,7 @@ local clusterRole = k.rbac.v1.clusterRole;
 local policyRule = clusterRole.rulesType;
 local extra_cluster_role_resources = policyRule.new() +
                                      policyRule.withApiGroups(['']) +
-                                     policyRule.withResources(['pods']) +
+                                     policyRule.withResources(['pods','services']) +
                                      policyRule.withVerbs(['get','list','watch']);
 local kp =
   (import 'kube-prometheus/main.libsonnet') +
