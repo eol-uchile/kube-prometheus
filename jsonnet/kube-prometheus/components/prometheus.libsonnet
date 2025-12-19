@@ -10,7 +10,7 @@ local defaults = {
   name: error 'must provide name',
   alertmanagerName: error 'must provide alertmanagerName',
   namespaces: ['default', 'kube-system', defaults.namespace],
-  replicas: 2,
+  replicas: 1,
   externalLabels: {},
   commonLabels:: {
     'app.kubernetes.io/name': 'prometheus',
