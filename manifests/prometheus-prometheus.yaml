@@ -34,6 +34,10 @@ spec:
   replicas: 1
   resources:
     requests:
+      cpu: 200m
+      memory: 200Mi
+    limits:
+      cpu: 1
       memory: 400Mi
   retention: 1y
   retentionSize: 4096MB

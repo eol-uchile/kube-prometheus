@@ -4,7 +4,8 @@ local defaults = {
   version: error 'must provide version',
   image: error 'must provide image',
   resources: {
-    requests: { memory: '400Mi' },
+    requests: { cpu: '200m', memory: '200Mi' },
+    limits: { cpu: '1', memory: '400Mi' },
   },
 
   name: error 'must provide name',
