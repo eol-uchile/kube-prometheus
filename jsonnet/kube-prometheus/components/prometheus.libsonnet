@@ -4,13 +4,14 @@ local defaults = {
   version: error 'must provide version',
   image: error 'must provide image',
   resources: {
-    requests: { memory: '400Mi' },
+    requests: { cpu: '200m', memory: '200Mi' },
+    limits: { cpu: '1', memory: '400Mi' },
   },
 
   name: error 'must provide name',
   alertmanagerName: error 'must provide alertmanagerName',
   namespaces: ['default', 'kube-system', defaults.namespace],
-  replicas: 2,
+  replicas: 1,
   externalLabels: {},
   commonLabels:: {
     'app.kubernetes.io/name': 'prometheus',
